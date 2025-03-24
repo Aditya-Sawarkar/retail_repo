@@ -17,6 +17,7 @@ JOIN `rock-data-454410-q0.silver_dataset.categories` c ON p.category_id = c.cate
 WHERE o.is_active = TRUE
 GROUP BY 1, 2, 3, 4, 5;
 
+
 -----------------------------------------------------------------------------------------------------------
 -- 2. Customer Engagement Metrics (customer_engagement)
 CREATE TABLE IF NOT EXISTS `rock-data-454410-q0.gold_dataset.customer_engagement`
@@ -34,6 +35,7 @@ LEFT JOIN `rock-data-454410-q0.silver_dataset.orders` o ON c.customer_id = o.cus
 LEFT JOIN `rock-data-454410-q0.silver_dataset.order_items` oi ON o.order_id = oi.order_id
 WHERE c.is_active = TRUE
 GROUP BY 1, 2, 6;
+
 
 -----------------------------------------------------------------------------------------------------------
 --3. Product Performance (product_performance)
@@ -60,6 +62,7 @@ LEFT JOIN `rock-data-454410-q0.silver_dataset.customer_reviews` cr ON p.product_
 WHERE p.is_quarantined = FALSE
 GROUP BY 1, 2, 3, 4, 5, 6;
 
+
 -----------------------------------------------------------------------------------------------------------
 --4. Supplier Performance (supplier_analysis)
 CREATE TABLE IF NOT EXISTS `rock-data-454410-q0.gold_dataset.supplier_analysis`
@@ -76,6 +79,7 @@ LEFT JOIN `rock-data-454410-q0.silver_dataset.order_items` oi ON ps.product_id =
 WHERE s.is_quarantined = FALSE
 GROUP BY 1, 2;
 
+
 -----------------------------------------------------------------------------------------------------------
 --5. Customer Reviews Summary (customer_reviews_summary)
 CREATE TABLE IF NOT EXISTS `rock-data-454410-q0.gold_dataset.customer_reviews_summary`
@@ -91,5 +95,6 @@ FROM `rock-data-454410-q0.silver_dataset.products` p
 LEFT JOIN `rock-data-454410-q0.silver_dataset.customer_reviews` cr ON p.product_id = cr.product_id
 WHERE p.is_quarantined = FALSE
 GROUP BY 1, 2;
+
 
 -----------------------------------------------------------------------------------------------------------
